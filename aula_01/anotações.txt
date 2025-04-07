@@ -1,0 +1,49 @@
+- Aula de Introdução
+    - Se não houvesse cloud, teria que comprar máquinas, configurar elas e etc
+    - Permitiu que as empresas focassem em desenvolvimento ao invés de máquinas locais
+    - Mais de 200 serviços na AWS
+    - S3 é um dos serviços mais utilizados
+        - Mesma coisa que criar uma pasta na máquina
+        - Usa muitas vezes como backup 
+        - Preço em conta para armazenamento
+        - Glacier é o backup do backup 
+    - EC2 também é muito utilizado
+        - É a máquina como um todo, com memória, processador, HD e sistema operacional
+        - Quase uma lan house que aluga um computador com horas por mês
+        - Hoje em dia todo mundo faz esse método de cobrança
+    - AWS Budget pode definir o orçamento que irá gerar um alerta no e-mail
+        - É como se fosse um limite de gasto que irá notificar se ultrapassar um determinado valor
+    - AWS Cost Explorer é possível acompanhar o custo em tempo real
+    
+    - O Databriks utiliza dois serviços da AWS por padrão: S3(storage) e EC2(processador)
+    - Arquitetura de dados é muito comum utilizar o S3
+    - O S3 é como se fosse uma pasta de computador, podendo fazer o que quiser depois
+    - ACLs (Access Control Lists): Configure as listas de controle de acesso (ACLs) para definir permissões de leitura e escrita. Por padrão, é melhor manter o controle de acesso restrito.
+    - Bucket Público: bucket por padrão ele é privado mas ele pode ser configurado como público
+    - Bucket Versioning: permite o versionamento do bucket
+    - API da AWS, que é possível conectar com a AWS por meio dela
+    - Pode criar quantos buckets quiser, não há custo. O que custa é o armazenamento
+    - A Amazon além de ter que liberar o acesso ao bucket ainda precisa liberar o acesso ao arquivo
+        - Para isso precisa ir em permissões -> bucket policy
+        - Abaixo tem a política para usuário anônimo
+        {
+            "Version": "2012-10-17",
+            "Statement": 
+            [
+                {
+                    "Sid": "PublicReadGetObject",
+                    "Effect": "Allow",
+                    "Principal": "*",
+                    "Action": "s3:GetObject",
+                    "Resource": "arn:aws:s3:::nome-do-bucket/*"
+                }
+            ]
+        }
+
+    - É possível gerar um site com HTML na nuvem e subir ele pelo bucket 
+    - O streamlit precisa de um EC2 para funcionar pois necessita de processamento
+    - Tudo que faz no computador é possível fazer no EC2
+        - É possível selecionar o SO que vai ser utilizado, do Windows não tem free tier pela licença
+        - Tudo é feito através do terminal, não tem interface 
+    - Pode ser criada essa instância e o s3 através da API da AWS pelo UI, CLI, Terraform e Boto3
+    
