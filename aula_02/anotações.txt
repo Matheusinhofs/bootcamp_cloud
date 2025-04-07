@@ -1,0 +1,13 @@
+- Armazenamento em nuvem com S3
+    - Para verificar os custos da AWS é importante utilizar o Cost Explorer
+    - Quanto ao armazenamento o S3 é a melhor solução da AWS, mas existem outros como o EBS, EFS, ...
+    - O S3 é focado no armazenamento de objetos, sendo ideal para grandes volumes de dados não estruturados
+    - Vantagem da redundância da AWS
+        - Ele cria três buckets na região dele -> ex: SC(Jaraguá, Blumenau e Brusque) 
+        - Existem alguns que são de multi regiões
+    - Se habilita o versionamento do bucket ele vai salvar uma cópia, de forma que se tiver várias alterações ele vai ocupar o espaço no bucket
+    - Existem vários tipos de bucket no S3, variando de acordo com as movimentações 
+    - É possível configurar os acessos do bucket
+    - Também se pode criar métricas para acompanhamento
+    - Além disso ele tem um controle de ciclo de vida que você especifica onde ele vai jogar os arquivos depois de determinado período
+    - 
