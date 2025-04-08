@@ -1,0 +1,29 @@
+- EC2 -> Computação em Nuvem
+    - É um serviço de computação em nuvem que oferece capacidade de processamento escalável
+    - Com o EC2, você pode lançar instâncias de máquinas virtuais (VMs) em questão de minutos, configurando-as de acordo com as necessidades específicas do seu projeto
+    - Zona -> VPC -> Bucket/EC2
+    - Uma EC2 é uma máquina virtual da AWS
+        - Utiliza um espaço no data center com o EC2
+        - Os sites de host eles utilizam uma máquina maior da AWS e subalocam ela para os clientes
+    - Zona:
+        - Local que vai estar alocada a máquina 
+        - Em lugares mais próximos da zona tem uma menor latência 
+    - Tipos de instância do EC2:
+        - Pode subir uma API, um streamlit, um algoritmo de ML, LLM, Banco de dados, ... 
+        - Para aplicações diferentes ele tem tipos de instâncias diferentes
+    - Normalmente utiliza General Purpose, pela boa distribuição
+    - Em alguns casos é necessário alterar a família de instância de acordo com a aplicação
+    - Tipos de Preço do EC2:
+        - On demand: é a mais cara porque paga por hora e conforme o uso 
+            - Interessante para teste e desenvolvimento
+            - Para on demand é possível configurar saving plans de pela necessidade
+        - Solicitação de Spot:
+            - Ele utiliza a AWS quando for mais barato o valor por hora 
+            - Se tiver caro ele não roda a aplicação 
+        -  Savings plans: eles são mais baratos mas tem um compromisso necessário em contrato
+            - são mais estáveis e previsíveis
+        - Instâncias Spots:processamento em lotes, machine learning, workloads sensíveis
+            - interessante ser utilizado para desenvolvimento   
+    - Se estiver com falha de conexão na instância do EC2, precisa verificar a porta e a chave SSH
+    - É possível conectar a máquina local com a máquina da AWS pelo terminal através do SSH, além de poder fazer isso pelo VS Code 
+    

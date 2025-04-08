@@ -1,0 +1,24 @@
+- IAM na AWS
+    - Gestão de acessos aos recursos da AWS
+    - É a primeira camada que solicita à AWS, normlamente um usuário com acesso faz esta solicitação
+    - O usuário root é quem criou a conta da AWS, sendo ele quem manda em tudo e controla tudo
+        - E esse usuário ninguém deveria ter
+    - Primeiro configurar o MFA do usuário root
+    - Depois é criar a conta do usuário administrator access
+        - Quem cuida de tudo mas não pode controlar a exclusão da conta, mudar senha do root, ... 
+        - Usuário -> Política de IAM pro usuário -> 
+    - PowerUserAccess
+        - Pode fazer tudo mas não pode utilizar o financeiro e adm
+        - Muito bom para consultorias 
+    - Um usuário pode ser uma aplicação ou uma pessoa
+    - Grupo de usuários:
+        - Cada grupo tem seus acessos e os grupos são direcionados a cada usuário
+    - Política é o que o usuário ou grupo pode fazer
+        - É um JSON na AWS que direciona o que pode utilizar
+    - Pode gerar chaves de acesso também 
+    - Funções:
+        - Anexa para instâncias 
+        - Dá permissões para uma máquina utilizar determinados recursos
+        - Ex: uma máquina EC2 pode acessar um S3
+    
+    
