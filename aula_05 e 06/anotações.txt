@@ -1,0 +1,39 @@
+- Projeto 
+    - Criar os usuários e os acessos que ele terá 
+    - Criar a instância pelo novo usuário
+    - Criar a VPC do projeto
+    - Configurar a instância 
+- VPC 
+    - Cria a própria VPC devido a VPC padrão ser muito permissiva
+    - Pode criar até 6 VPCs em cada região
+    - É um pedaço de uma máquina que você pode utilizar
+    - São regras que dfeterminam a interação entre a máquina e a rede
+    - Cria uma infraestrutura com a AWS
+    - Cria uma rede privada para apenas as pessoas da VPC
+        - Mais utilizado para banco de dados 
+    - Uma VPC para cada projeto 
+        - O banco de dados esta em uma VPC e o dashboard em outra
+    - NAT gateways
+        - Não esta no free tier 
+        - Algumas aplicações necessitam de um gateway, como o Databriks 
+        - Libera acessar serviços fora da AWS
+    -VPC endpoints 
+        - Libera acessar serviços que estão na AWS mas que não estão na mesma VPC
+    - Security Group
+        - É como se fosse um firewall 
+        - Quais IPs e portas que podem abrir 
+    - Projeto de dados com AWS
+        - AWS Bastion Host ou Jump Box -> arquiteturas de AWS
+        - Criar duas instâncias no EC2, passar por uma VPC endpoint para acessar um bucket S3
+        - Tem controle de quem pode acessar o que através do IAM 
+        - Criar o usuário com o acesso de PowerUserAccess
+        - Em seguida criar a VPC 
+        - Após criar a VPC é necessário criar as subnets
+        - Criar o gateway de internet e associar com a VPC
+        - Em seguida são criadas as tabelas de rotas e associadas à VPC e subnet 
+            - Uma tabela para pública e outra para privada 
+        - Depois são lançadas as instâncias EC2
+        - Primeiro é acessada a instância pública e em seguida a privada
+        - A privada deve possuir o arquivo de senha da instância 
+        - Em seguida é feito o super secreto bucket S3 na instância EC2
+        - E por último é configurado o gateway endpoint para a VPC desejada
