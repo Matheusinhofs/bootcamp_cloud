@@ -1,0 +1,6 @@
+- Projeto de requisição de API e gravando dados no banco na AWS
+    - Extrair dados da API da bolsa de valores, depois ele transforma e grava em um banco no EC2 privado
+    - Criar VPC
+    - Criar RDS 
+    - Firewall RDS e do EC2
+    - 

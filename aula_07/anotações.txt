@@ -1,0 +1,18 @@
+- Banco de dados com RDS
+    - Até aqui foi utilizado IaaS, pensando em EC2, VPC, S3, ...
+    - PaaS não precisa indicar SO, nem VPC. A própria AWS faz o EC2, configura, atualiza, sobe o postgres
+        - Normalmente mais caro que um EC2 normal com você subindo um banco de dados
+        - Ai ela fica responsável pela estrutura
+    - Amazon RDS
+        - Precisa criar uma VPC
+            - Criar uma subrede public  
+        - Migrar para o EC2 se desejar
+        - Se quiser acessar fora da AWS precisa ser public ou NAT gateway
+    
+    - Backup automatizável
+        - Toda vez que realiza um delete ele faz um backup 
+        - Ele tem o time travel do período 
+    - Ter sempre em mãos o database name, username e password master
+    - Time travel é free tier mas conforme aloca espaço ele sai do free tier
+    - Com isso é possível entrar no banco rds pela sua máquina 
+    
