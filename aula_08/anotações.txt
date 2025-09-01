@@ -3,4 +3,6 @@
     - Criar VPC
     - Criar RDS 
     - Firewall RDS e do EC2
+        - Dentro do security group tem como fazer a conexão deles, em que um libera o outro
+    - Faz a chamada dos dados da API 
     - 
