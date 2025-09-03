@@ -11,12 +11,12 @@ load_dotenv()
 url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
 
 parameters = {
-    'symbol': 'BRL',
-    'convert' : 'USD'
+    'symbol': 'BTC',
+    'convert': 'BRL'
 }
 
 headers = {
-    'Accepts' : 'application/json',
+    'Accepts': 'application/json',
     'X-CMC_PRO_API_KEY': os.getenv('CMC_API_KEY') # AQUI OBTÉM A CHAVE DO .ENV
 }
 
@@ -27,5 +27,13 @@ response = session.get(url=url, params=parameters)
 
 data = json.loads(response.text)
 
-pprint(data)
-print(type(data))
+bitcoin_data = data['data']['BTC']
+brl_quote = bitcoin_data['quote']['BRL']
+
+pprint(brl_quote)
+pprint(brl_quote['price'])
+pprint(brl_quote['last_updated'])
+pprint(brl_quote['volume_24h'])
+pprint(brl_quote['market_cap'])
+
+
