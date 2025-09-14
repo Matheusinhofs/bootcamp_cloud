@@ -9,6 +9,9 @@ readme = "README.md"
 python = "^3.12"
 requests = "^2.32.5"
 dotenv = "^0.9.9"
+schedule = "^1.2.2"
+pydantic = "^2.11.9"
+psycopg2 = "^2.9.10"
 
 
 [build-system]

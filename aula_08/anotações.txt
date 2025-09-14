@@ -5,4 +5,5 @@
     - Firewall RDS e do EC2
         - Dentro do security group tem como fazer a conexão deles, em que um libera o outro
     - Faz a chamada dos dados da API 
-    - 
+    - Ajusta o script e comunica direto com o banco
+    - BOTO3 serve para apenas comunicar com a AWS e criar os recursos necessários, não para subir dados
