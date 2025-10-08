@@ -1,0 +1,31 @@
+- Arquitetura de Eventos:
+    - Lambda pode ser um EC2 que funciona com eventos, como quando extrair uma API, processar uma imagem.
+    - Tudo que for eventos faz sentido usar lambda
+    - Busca maximizar os recursos utilizados, diminuindo o tempo gasto com aplicações "ligadas" o tempo todo. 
+    - Ex:
+        Sua aplicação é uma API que recebe requisições 24/7
+        Mas as mudanças de dados ocorrem apenas das 08:00 às 18:00 de segunda a sexta
+        Logo, boa parte do tempo um EC2, por exemplo, estaria gerando custo desnecessário.
+    - A ideia é ter um trigger para que no momento que for ocorrer o evento ai sim ligaria o seu EC2 de exemplo.
+    - É possível ter uma mistura das soluções como Airflow, Kubernets, EC2 e etc.
+    - Mas a arquitetura de eventos pode otimizar esse processo.
+    - Um deles atua de forma pontual e outro contínuo
+    - Serverless: não precisa se preocupar com infraestrutura que já vem tudo bem orientado
+        - S3, Lambda, SQS, ...
+    - É possível escolher ao criar a sua função se quer usar uma imagem docker, criar uma função ou já usar funções que o Lambda sugere
+    - Ele cria funções python ou outra linguagem, com um evento que serviria como um gatilho
+    - É possível testar, monitorar e configurar o lambda.
+    - Você pode também criar um gatilho para que assim que um evento ocorrer ele executar diversas funções.
+        - Um exemplo muito comum é uma página web com botões que disparam lambda functions. 
+    - Para uso de API, é interessante seguir pela API Gateway, por possuir mais recursos além do endpoint
+    - É possível criar uma função pelo lambda que grava um arquivo no S3, que foi feito na aula
+        - Se atentar as funções, políticas e etc de segurança 
+    - 
+
+
+
+
+
+
+
+
