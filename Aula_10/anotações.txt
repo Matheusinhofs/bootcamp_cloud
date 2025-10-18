@@ -1,0 +1,12 @@
+Gestão de Custos na AWS
+    - É possível criar contas na AWS para o usuário dentro de uma organização que deriva da sua root, e com elas distribuir os Custos
+        - Em seguida precisa criar o IAM e todos os acessos
+        - Garante certa atomicidade e controle do que vai estar sendo feito
+        - Com as tags é possível criar uma hierarquia por meio delas e associar com seus projetos
+        - EX: Centro de Custo -> Área -> Owner -> Projeto
+    - A conta da AWS pode ter mais de uma organização. E todos os gastos são vinculados à organização, semelhante a um cento de custo
+    - O mesmo e-mail pode ter mais de um acesso, um como root e outro como usuário do IAM 
+    - Quando for verificar os custos você pode ver por serviço da AWS (EC2,S3,...), pode ser por API operation (que então você pode ver qual operação na AWS gerou custo), entre outros.
+    - Quando precisar deletar algum custo, precisa ir na região que está esse custo e ir lá deletar ela. PARAR AINDA GERA CUSTO
+    - Com as tags você mantém a rastreabilidade do que está sendo criado
+    - 
