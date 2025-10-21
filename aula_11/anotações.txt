@@ -1,0 +1,19 @@
+Lambda Functions:
+    - Projeto prático com Lambda
+    - É semelhante ao EC2 mas serverless, não somos responsáveis pelo SO, Hardware, ...
+    - Código python que rode a cada 10 minutos
+    - Lambda pode pegar um código python e jogar na AWS
+    - Usar o cloudwatch event para agir como trigger na hora de executar a lamba function
+        - Qualquer cron job pode ser executado utilizando o cloudwatch
+            - No caso do curso foi feito em um horário específico ou a cada intervalo de tempo
+    - Você cria as variáveis de ambiente direto no lambda e a partir dele configura seu OS e outros.
+        - Configuration -> Environment variables
+    - Algumas bibliotecas python já estão instaladas no lambda functions, mas outras não
+        - Um caso não instalado é o request, e para isso utilizamos o layer
+        - tem um passo a passo no git da jornada dessa aula que explica bem certinho
+            - É como se fosse criar um arquivo zip comprimido com as bibliotecas e em seguida "descomprimir" ele no lambda
+    - Consegue criar um projeto com request de uma API e em seguida gravar no S3, utilizando lambda no processo. Ou quando salvar no S3 ele executar alguma ação específica.
+    
+
+        
+     
