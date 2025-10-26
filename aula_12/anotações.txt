@@ -1,0 +1,51 @@
+Amazon CLI:
+    - Tudo que tem interação com a AWS funciona com Rotas, Endpoints ou Serviços Web
+    - O mesmo comando de criar um bucket pode ser feito via UI, BOTO3, CLI, Terraform...
+    - CLI e CloudShell são outras formas de comunicar com a AWS
+    - CloudShell é o terminal direto na AWS. Pode criar serviços na AWS através desse terminal.
+    - Ajuda mais em rotinas de script, comum em ambientes híbridos.
+    - Iniciando:
+        - Primeiro baixa o AWS CLI
+        - Em seguida é possível usar o comando aws no git bash para testar
+        - Resta utilizar o comando de configuração: aws configure --profile (nome do perfil)
+    - Comandos básicos:
+        - aws s3 ls -> lista os buckets s3
+        - aws s3 mb s3://nome_bucket-> criar um bucket s3
+        - aws s3 rb s3://nome_bucket-> deletar um bucket s3
+        - aws ec2 describe-instances -> descreve as instâncias na aws
+        - aws s3 cp dados.json s3://nome-do-seu-bucket/dados.json -> copia os dados e seleciona aonde deseja salvar eles
+        - aws s3 mv origem destino -> move arquivos na aws
+        - aws s3 rm s3://nome-do-seu-bucket/arquivo.txt -> remove os arquivos de um bucket
+        - aws s3api put-object --bucket nome-do-seu-bucket --key caminho-do-arquivo --body arquivo.txt -> carrega arquivos na aws
+        - aws s3api get-object --bucket nome-do-seu-bucket --key caminho-do-arquivo arquivo.txt -> baixa um arquivo do s3
+        - 
+
+    - Comandos de database:
+        aws rds create-db-instance \
+        --db-instance-identifier mydbinstance \
+        --db-instance-class db.t4g.micro \
+        --engine mysql \
+        --engine-version 8.0.35 \
+        --master-username admin \
+        --master-user-password password123 \
+        --allocated-storage 20  
+        (Cria um banco de dados rds)
+
+        aws rds delete-db-instance \
+        --db-instance-identifier mydbinstance \
+        --skip-final-snapshot
+        (Deleta o banco de dados rds)
+
+        while true; do
+            STATUS=$(aws rds describe-db-instances --db-instance-identifier mydbinstance --query 'DBInstances[0].DBInstanceStatus' --output text)
+            echo "Status: $STATUS"
+            if [ "$STATUS" == "available" ]; then
+                echo "A instância está disponível!"
+                break
+            fi
+            sleep 30
+        done
+        (monitora status do rds)
+    
+
+
