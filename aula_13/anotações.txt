@@ -1,0 +1,13 @@
+- Amazon SQS
+    - É como se fosse um banco de dados do tipo chave valor para armazenar as informações
+    - Segue a lógica de uma fila com requisições 
+    - Interessante como uma camada de controle
+    - Ajuda em aplicações como API externa, dispositivo IoT, aplicações Web
+    - Tipos de fila:
+        - SQS Standard - Aguenta muitas mensagens e não envia necessariamente na ordem
+        - FIFO - First in First Out
+            - Garante que não haja duplicidade
+            - O que ajuda na escolha é o limite que a fila FIFO tem
+            - Limite de 300 transações por segundo
+    - Criar queue no CLI: aws sqs create-queue --queue-name minha-fila-standard
+    - 
