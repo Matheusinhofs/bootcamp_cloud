@@ -1,0 +1,9 @@
+- Dynamo DB e AWS Amplify
+    - Na aula iremos criar uma aplicação com um front end gerado pelo GPT com o Amplify, o lambda functions e o RDS
+    - Nesse caso o front end fica separado do front end, em que o lambda estaria o back end e o amplify o front
+    - O Dynamo DB ele paga por aplicação que executa, não sendo necessário se preocupar com tempo que fica ligado
+        - Ele fica interessante em aplicações que não exigem alta quantidade de requisições
+    - SQL vs NOSQL: o SQL pensa no schema primeiro e o NOSQL ele gera um arquivo por insert (salva quase como em um S3)
+        - NOSQL é mais interessante pro DEV que dai ele foca mais na aplicação e o que vem da aplicação vai ser salvo no banco NOSQL
+    - O Amplify ele é utilizado justamente para criar e hospedar páginas Web 
+    -  
