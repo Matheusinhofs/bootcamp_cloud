@@ -1,0 +1,11 @@
+- Amazon SNS
+    - É um serviço de mensageria gerenciado que facilita a criação de sistemas baseados no modelo Pub/Sub (publicação/assinatura)
+    - Ex: pode enviar um e-mail para alguém a partir de uma ação, enviar uma mensagem e etc
+    - Tem uma função semelhante ao SQS, mas o SQS quando busca os dados ele verifica o que tem na fila, então ele envia e recebe a mensagem
+    - No SQS você pode utilizar métodos de entrega da mensagem diferentes, como HTTPS, Lambda, SQS, SMS, e-mail
+    - Utilizando o CLI: 
+        aws sns publish \
+        --topic-arn arn:aws:sns:us-east-2:148761673709:MeuTopico \
+        --message '{"nome": "Luciano", "aula": "aua13"}' \
+        --region us-east-2
+    - 

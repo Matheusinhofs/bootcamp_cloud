@@ -1,0 +1,13 @@
+- Introdução ao Azure para Dados
+    - Azure não chega a separar por zonas, geralmente são as mesmas
+        - AWS é fácil para se perder porque tem que selecionar as zonas
+    - O key vault é semelhante ao arquivo .env da máquina 
+    - No azure existem vários pacotes separados, diferente da AWS que precisa só do BOTO3
+    - Precisa de um subscription e um resource group, sendo obrigatório os dois  
+        - O subscription é semelhante a tag 
+    - No objeto e nas secrets ele cria a relação chave e valor 
+    - Tem em uma key vault parte de tag, iam, acessos, ...
+    - Criar um acesso de aplicação pelo Azure AD
+        - Semelhante ao IAM da AWS
+            - Pode criar usuário, política de segurança, grupo de segurança,... 
+    - 
