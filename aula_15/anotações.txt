@@ -6,4 +6,6 @@
     - SQL vs NOSQL: o SQL pensa no schema primeiro e o NOSQL ele gera um arquivo por insert (salva quase como em um S3)
         - NOSQL é mais interessante pro DEV que dai ele foca mais na aplicação e o que vem da aplicação vai ser salvo no banco NOSQL
     - O Amplify ele é utilizado justamente para criar e hospedar páginas Web 
-    -  
+    - É possível criar o app pelo github ou comprimindo o index.html e subindo na AWS  
+    - Utilizamos o lambda para parte do back end e em seguida o Dynamo DB
+    - 

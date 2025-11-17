@@ -59,7 +59,8 @@
   </main>
 
   <script>
-    // Helpers
+    const API_URL = "https://wte3p2swqc.execute-api.us-west-1.amazonaws.com/prd/";
+
     const el = id => document.getElementById(id);
     const raffleName = el('raffleName');
     const minNumber = el('minNumber');
@@ -74,33 +75,6 @@
 
     let winners = [];
 
-    function validateInputs() {
-      const min = Number(minNumber.value);
-      const max = Number(maxNumber.value);
-      if (!Number.isFinite(min) || !Number.isFinite(max)) return { ok: false, msg: 'Mínimo e máximo devem ser números.' };
-      if (!Number.isInteger(min) || !Number.isInteger(max)) return { ok: false, msg: 'Use números inteiros.' };
-      if (min > max) return { ok: false, msg: 'Número mínimo não pode ser maior que o máximo.' };
-      return { ok: true, min, max };
-    }
-
-    function getRandomIntInclusive(min, max) {
-      // garantia de inteiros
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
-    function renderHistory() {
-      historyList.innerHTML = '';
-      winners.slice().reverse().forEach((w, i) => {
-        const li = document.createElement('li');
-        li.className = 'p-3 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between';
-        li.innerHTML = `<div><div class="text-sm font-medium">${escapeHtml(w.raffle || 'Sorteio')}</div><div class="text-xs text-gray-500">${w.date}</div></div><div class="text-lg font-semibold text-indigo-600">${w.number}</div>`;
-        historyList.appendChild(li);
-      });
-      historyCount.textContent = `${winners.length} sorteio(s)`;
-    }
-
     function escapeHtml(unsafe) {
       return unsafe
         .replace(/&/g, "&amp;")
@@ -110,29 +84,73 @@
         .replace(/'/g, "&#039;");
     }
 
-    drawBtn.addEventListener('click', () => {
-      const v = validateInputs();
-      if (!v.ok) {
-        alert(v.msg);
+    function renderHistory() {
+      historyList.innerHTML = '';
+      winners.slice().reverse().forEach(w => {
+        const li = document.createElement('li');
+        li.className = 'p-3 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between';
+        li.innerHTML = `
+          <div>
+            <div class="text-sm font-medium">${escapeHtml(w.NomeSorteio)}</div>
+            <div class="text-xs text-gray-500">${w.DataSorteio}</div>
+          </div>
+          <div class="text-lg font-semibold text-indigo-600">${w.NumeroSorteado}</div>`;
+        historyList.appendChild(li);
+      });
+      historyCount.textContent = `${winners.length} sorteio(s)`;
+    }
+
+    function validateInputs() {
+      const min = Number(minNumber.value);
+      const max = Number(maxNumber.value);
+      if (!Number.isFinite(min) || !Number.isFinite(max)) return { ok: false, msg: 'Mínimo e máximo devem ser números.' };
+      if (!Number.isInteger(min) || !Number.isInteger(max)) return { ok: false, msg: 'Use números inteiros.' };
+      if (min > max) return { ok: false, msg: 'Número mínimo não pode ser maior que o máximo.' };
+      return { ok: true };
+    }
+
+    drawBtn.addEventListener('click', async () => {
+      const validation = validateInputs();
+      if (!validation.ok) {
+        alert(validation.msg);
         return;
       }
-      const num = getRandomIntInclusive(v.min, v.max);
-      const now = new Date();
-      const item = {
-        raffle: raffleName.value.trim() || 'Sorteio',
-        number: num,
-        date: now.toLocaleString()
-      };
-      winners.push(item);
 
-      // animação simples
+      const payload = {
+        NomeSorteio: raffleName.value.trim() || "Sorteio",
+        NumeroMin: Number(minNumber.value),
+        NumeroMax: Number(maxNumber.value)
+      };
+
       result.textContent = '...';
-      result.classList.remove('opacity-0');
-      setTimeout(() => {
-        result.textContent = item.number;
-        resultRaffleName.textContent = item.raffle;
+      resultRaffleName.textContent = '';
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        const item = data.Item;
+
+        if (!item) {
+          alert("Erro: resposta inesperada da API.");
+          return;
+        }
+
+        result.textContent = item.NumeroSorteado;
+        resultRaffleName.textContent = item.NomeSorteio;
+
+        winners.push(item);
         renderHistory();
-      }, 300);
+
+      } catch (err) {
+        console.error(err);
+        alert("Erro ao comunicar com a API.");
+        result.textContent = '—';
+      }
     });
 
     resetHistory.addEventListener('click', () => {
@@ -144,33 +162,24 @@
     });
 
     copyResult.addEventListener('click', async () => {
-      const txt = result.textContent === '—' ? 'Nenhum resultado' : `${resultRaffleName.textContent || 'Sorteio'}: ${result.textContent}`;
+      const txt = result.textContent === '—' ? 'Nenhum resultado' : `${resultRaffleName.textContent}: ${result.textContent}`;
       try {
         await navigator.clipboard.writeText(txt);
         copyResult.textContent = 'Copiado!';
         setTimeout(() => copyResult.textContent = 'Copiar', 1500);
       } catch (e) {
-        alert('Não foi possível copiar automaticamente. Selecione o número e copie manualmente.');
+        alert('Não foi possível copiar automaticamente.');
       }
     });
 
-    // pequenas melhorias de UX: impedir min > max enquanto digita
     minNumber.addEventListener('input', () => {
-      const v = validateInputs();
-      drawBtn.disabled = !v.ok;
-      drawBtn.classList.toggle('opacity-50', !v.ok);
+      drawBtn.disabled = !validateInputs().ok;
     });
     maxNumber.addEventListener('input', () => {
-      const v = validateInputs();
-      drawBtn.disabled = !v.ok;
-      drawBtn.classList.toggle('opacity-50', !v.ok);
+      drawBtn.disabled = !validateInputs().ok;
     });
 
-    // inicial
-    (function init() {
-      renderHistory();
-      drawBtn.disabled = false;
-    })();
+    renderHistory();
   </script>
 </body>
 </html>
