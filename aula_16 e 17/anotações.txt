@@ -1,4 +1,5 @@
 - Introdução ao Azure para Dados
+    - Se você tem um e-mail outlook ou semelhante já possui a conta para acessar a Azure, mas não tem funcionalidade. Só se tiver um subscription.
     - Azure não chega a separar por zonas, geralmente são as mesmas
         - AWS é fácil para se perder porque tem que selecionar as zonas
     - O key vault é semelhante ao arquivo .env da máquina 
@@ -10,4 +11,15 @@
     - Criar um acesso de aplicação pelo Azure AD
         - Semelhante ao IAM da AWS
             - Pode criar usuário, política de segurança, grupo de segurança,... 
-    - 
+        - O app registration dá acesso ao app pelo python 
+    - Em seguida é criado o key vault para a conta que será utilizada para conectar ao python 
+    - Uma opção é salvar o .env no key vault do azure e se precisar alterar faz em um lugar só 
+    - Blob Storage é semelhante ao S3 da AWS
+    - É criada uma conta de armazenamento e dentro dela vários "buckets" ou blob storages 
+    - Fica vinculado a um resource group 
+    - Azure tem um VNET e a AWS a VPC, criando em ambos rede, subrede e etc.
+    - No JSON do resource a URL de acesso fica disponível para consulta e para utilização no .env ou key vault.
+    - Azure VM: semelhante a um EC2 mas no Azure, é uma máquina que você aluga por uso dela  
+        - Dá para usar o Azure VM para subir qualquer aplicação usando o Docker, por exemplo
+        - 
+    
